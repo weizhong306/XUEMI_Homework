@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+a {
+  text-decoration: none;
+}
+h2,
+h4,
+p {
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+}
+.wrapper {
+  height: 100%;
+  background-color: #ccc;
+  overflow: hidden;
+}
+.business_card {
+  height: 720px;
+  width: 460px;
+  /* 將 business_card 的背景色設定為透明，由梯形色塊取代 */
+  background-color: #fff;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+
+  padding: 80px 30px 30px;
+
+  /* 設定相對定位，作為偽元素的定位基準 */
+  position: relative;
+  /* 確保 business_card 本身在偽元素之上，雖然這裡偽元素 z-index 設為 -1，但明確設定有助於理解 */
+  z-index: 0;
+}
+
+/* 為 business_card 創建上方梯形背景 */
+.business_card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%; /* 梯形高度，可調整 */
+  background-color: #d6696b;
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 8.5%); /* 裁切成梯形 */
+  z-index: -1; /* 放置在 business_card 內容的下方 */
+
+  transition: all 0.3s;
+}
+
+/* 為 business_card 創建下方梯形背景 */
+.business_card:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 0%; /* 梯形高度，可調整 */
+  background-color: #7b9889;
+  clip-path: polygon(0 8.5%, 100% 50%, 100% 100%, 0 100%); /* 裁切成梯形 */
+  z-index: -1; /* 放置在 business_card 內容的下方 */
+
+  transition: all 0.3s;
+}
+
+.business_card:hover::before,
+.business_card:hover::after {
+  height: 100%;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  background-color: #f1c412;
+  box-shadow: 0 0 35px 5px rgba(241, 196, 18, 0.6),
+    0 20px 40px 0 rgba(0, 0, 0, 0.2);
+
+  text-align: center;
+  /* 防止外邊距折疊 */
+  display: flow-root;
+}
+.avatar .image {
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  margin: -50px auto 24px;
+}
+.avatar .image img {
+  width: 100%;
+  height: 100%;
+  /* 防止變形 */
+  object-fit: cover;
+}
+.info .inner {
+  padding: 8px 0px;
+  opacity: 0.5;
+}
+.info .inner::before {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 2px;
+  background-color: #000;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, 0);
+
+  transition: all 0.3s;
+}
+.info .inner::after {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 2px;
+  background-color: #000;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
+
+  transition: all 0.3s;
+}
+.avatar .image:hover ~ .info .inner::before,
+.avatar .image:hover ~ .info .inner::after {
+  width: 85%;
+}
+.avatar .info {
+  width: 100%;
+}
+.avatar .info .aliases {
+  margin-top: 10px;
+  /* 文字淡化 */
+  opacity: 0.5;
+}
+.avatar .info .btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: darksalmon;
+
+  margin: 30px auto;
+
+  border: none;
+
+  /* 讓內容完美置中 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  /* 增加手形游標 */
+  cursor: pointer;
+}
+.avatar .info .btn:active {
+  background-color: #000;
+}
+.avatar .info .btn_content {
+  color: #fff;
+}
