@@ -1,0 +1,557 @@
+@charset "UTF-8";
+
+/* ============================================= *\
+  CSS 重構和整理
+  
+  目錄:
+  1. 全域設定 (Global Settings)
+  2. 佈局系統 (Layout System)
+  3. 基礎元件 (Base Components)
+  4. 導航列 (Navigation)
+  5. 主要內容區塊 (Main Content)
+  6. 頁尾 (Footer)
+\* ============================================= */
+
+/* ============================================= *\
+  1. 全域設定 (Global Settings)
+\* ============================================= */
+
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+
+html,
+body {
+  font-family: "微軟正黑體", arial;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #006341;
+}
+
+/* ============================================= *\
+  2. 佈局系統 (Layout System)
+\* ============================================= */
+
+.container {
+  width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.row {
+  margin: 0 -20px;
+}
+
+/* Clearfix */
+.row::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* Grid System */
+.col-1-2,
+.col-1-3,
+.col-1-4,
+.col-1-5,
+.col-1-6,
+.col-1-8 {
+  float: left;
+  padding: 8px;
+}
+
+.col-1-2 {
+  width: 50%;
+}
+.col-1-3 {
+  width: 33.333333%;
+}
+.col-1-4 {
+  width: 25%;
+}
+.col-1-5 {
+  width: 20%;
+}
+.col-1-6 {
+  width: 16.666667%;
+}
+.col-1-8 {
+  width: 12.5%;
+}
+
+/* Hero Section */
+.hero {
+  margin-top: 3px;
+  padding: 32px 0;
+}
+
+.hero.hero-bg-white {
+  background-color: #f7f7f7;
+}
+
+/* 清除浮動 */
+.main::after,
+.hero .container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* ============================================= *\
+  3. 基礎元件 (Base Components)
+\* ============================================= */
+
+/* 按鈕 */
+.btn {
+  display: inline-block;
+  font-size: 18px;
+  padding: 2px 10px;
+  border: 1px solid #000;
+  color: #000;
+  border-radius: 15px;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.btn.btn-horizontal-list {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+}
+
+/* 圖片容器 */
+.image-container {
+  width: 100%;
+  position: relative;
+}
+
+.image-container::before {
+  content: "";
+  display: block;
+  width: 100%;
+  padding-top: 100%;
+}
+
+.image-container .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+/* 遮罩 */
+.mask-dark {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 區塊標題 */
+.section-into {
+  text-align: center;
+  font-size: larger;
+  color: #0e382c;
+  margin-bottom: 10px;
+}
+
+/* ============================================= *\
+  4. 導航列 (Navigation)
+\* ============================================= */
+
+.navbar {
+  height: 106px;
+  background-color: #f7f7f7;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.navbar::before {
+  content: "";
+  display: block;
+  width: 100%;
+  background: #006341;
+  height: 10px;
+}
+
+.navbar::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  opacity: 0.15;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: flex-end;
+  height: 93px;
+  padding-top: 15px;
+  margin-bottom: 0;
+}
+
+/* 品牌標誌 */
+.navbar .brand {
+  align-self: flex-start;
+  width: 62px;
+  height: 62px;
+  background-image: url("../images/logo/starbucks.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  white-space: nowrap;
+  text-indent: 100%;
+  overflow: hidden;
+}
+
+/* 主導航 */
+.navbar .nav {
+  display: flex;
+  margin-left: 30px;
+}
+
+.navbar .nav .nav-link {
+  display: block;
+  padding: 16px;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+
+.navbar .nav .nav-link:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* 工具列 */
+.navbar .utility {
+  display: flex;
+  align-self: flex-start;
+  margin-left: auto;
+  gap: 24px;
+  align-items: center;
+  padding-top: 8px;
+}
+
+.navbar .utility a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  transition: color 0.1s ease;
+}
+
+.navbar .utility a::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: filter 0.1s ease;
+}
+
+.navbar .utility .partners-link::before {
+  background-image: url("../images/icon/apron.png");
+}
+
+.navbar .utility .store-link::before {
+  background-size: 150%;
+  background-image: url("../images/icon/destination.png");
+}
+
+.navbar .utility .partners-link:hover,
+.navbar .utility .store-link:hover {
+  color: #888;
+}
+
+.navbar .utility .partners-link:hover::before,
+.navbar .utility .store-link:hover::before {
+  filter: grayscale(1) opacity(0.6);
+}
+
+/* ============================================= *\
+  5. 主要內容區塊 (Main Content)
+\* ============================================= */
+
+/* Jumbotron 主視覺 */
+.jumbotron {
+  padding: 48px 0 72px;
+  background-color: #f7f7f7;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.jumbotron .board-link {
+  display: block;
+}
+
+.jumbotron .board-link img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Activity 活動區塊 */
+.activity {
+  margin-top: 3px;
+}
+
+.activity-gallery {
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 32px 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.activity-center {
+  flex: 2;
+}
+
+.activity-side {
+  flex: 1;
+  overflow: hidden;
+}
+
+.activity-link {
+  display: block;
+  height: 100%;
+}
+
+.activity img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.activity-side img {
+  width: 200%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 左邊圖片顯示右半邊 */
+.activity-side:first-child img {
+  transform: translateX(-50%);
+}
+
+/* 右邊圖片顯示左半邊 */
+.activity-side:last-child img {
+  transform: translateX(0);
+}
+
+/* Product List 商品列表 */
+.product-list .list-item .title {
+  font-size: 15px;
+  color: #000;
+}
+
+/* Stories List 故事列表 */
+.stories-list .list-item .title {
+  font-size: 18px;
+  color: #000;
+}
+
+/* Event & Link 活動與連結區塊 */
+.store-box .section-into {
+  font-size: 42px;
+}
+
+.store-box .event-item {
+  padding: 20px 0;
+}
+
+.store-box .event-item:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.store-box .event-item a {
+  display: flex;
+  flex-direction: row;
+}
+
+.store-box .event-item .text-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15px;
+  line-height: 25px;
+}
+
+.store-box .event-item .text-block h3 {
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.store-box .event-item .text-block p {
+  font-size: 14px;
+  color: #000;
+}
+
+.store-box .event-item .text-block address {
+  font-size: 16px;
+  color: #000;
+  font-style: normal;
+}
+
+.store-box .image-container {
+  width: 110px;
+}
+
+/* Link Box 連結盒子 */
+.link-box .image {
+  background-position: top;
+}
+
+.link-box .link-list {
+  display: flex;
+  border: 1px solid #f7f7f7;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  flex-direction: column;
+  margin: -300px auto 0;
+  width: 90%;
+}
+
+.link-box .link-list a {
+  width: 100%;
+  display: block;
+}
+
+.link-box .link-list .link-btn {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.link-box .link-list .link-btn .image-container {
+  width: 40px;
+}
+
+.link-box .link-list .link-btn .link-name {
+  font-size: 22px;
+  color: #006341;
+}
+
+/* ============================================= *\
+  6. 頁尾 (Footer)
+\* ============================================= */
+
+.footer {
+  clear: both;
+  background-color: #f7f7f7;
+  padding: 32px 0;
+  margin-top: 48px;
+}
+
+/* Footer Top - 社群媒體連結 */
+.footer-top {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 25px 0;
+}
+
+.footer-top .image-container {
+  width: 30px;
+}
+
+/* Footer Main - 主要連結 */
+.footer-main .row .col-1-5 {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-main .row .col-1-5 h4 {
+  font-size: 19px;
+  margin-bottom: 22.8px;
+}
+
+.footer-main .row .col-1-5 a {
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.footer-main .row .col-1-5 a:hover {
+  color: #ccc;
+}
+
+.footer-main .row .col-1-5 .important-link {
+  color: #2a8a15;
+}
+
+.footer-main .row .col-1-5 .important-link:hover {
+  color: #2a8a15;
+}
+
+/* Footer Bottom - 版權資訊 */
+.footer-bottom {
+  margin-left: -20px;
+  margin-bottom: 45px;
+  padding-top: 16px;
+}
+
+.footer-sub ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-sub li:not(:last-child)::after {
+  content: "|";
+  color: #666;
+  margin: 0 6.4px;
+}
+
+.footer-sub a:hover {
+  color: #ccc;
+}
+
+.footer-bottom .footer-copyright {
+  color: #666;
+  font-size: 13px;
+}
